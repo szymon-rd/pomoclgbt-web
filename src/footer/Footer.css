@@ -1,0 +1,7 @@
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  filter: grayscale();
+  color: white;
+  margin-bottom: 1px;
+}

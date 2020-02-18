@@ -1,0 +1,24 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url("lgbt-background-resized.jpg");
+  background-size: cover;
+  background-position-y: 50%;
+  background-position-x: center;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  flex: 1 0 auto;
+  padding: 10px;
+}
+
+.Page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
