@@ -30,8 +30,12 @@ export const Welcome = () => {
   const emotionsStyle = useSpring({opacity: type != HelpType.LAW ? 1 : 0.3})
   const continueStyle = useSpring({opacity: city == null ? 0 : 1})
 
-  const AnimatedButton = animated(Button);
+  const onCityChange = (event: any, values: any) => {
+    setCity(values)
+  }
 
+  const AnimatedButton = animated(Button);
+  console.log(city?.values)
   return (
     <div className="welcome">
       <div className="header">
@@ -60,9 +64,9 @@ export const Welcome = () => {
             id="combo-box-demo"
             options={Cities}
             className="selectCity"
-            getOptionLabel={option => option}
+            getOptionLabel={option => option?.name as string}
             style={{ width: 300 }}
-            onChange={setCity}
+            onChange={onCityChange}
             renderInput={params => (
               <TextField {...params} label="Skąd jesteś?" color="primary" variant="outlined" fullWidth />
             )}
@@ -71,7 +75,7 @@ export const Welcome = () => {
       ) : <Fragment></Fragment>}
       <div className="continue">
         {(city != null) ? (
-        <Link to="/list">
+        <Link to={`/list?city=${city.id}&type=${type}`}>
           <AnimatedButton style={continueStyle} size="large" variant="contained" color="primary" className={classes.margin}>
               Dalej
           </AnimatedButton>

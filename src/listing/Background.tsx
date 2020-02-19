@@ -48,7 +48,7 @@ export const Background = () => {
           <animated.div className="bcTile" style={{
             left: stripWidth * id,
             width: stripWidth,
-            position: "absolute",
+            position: "fixed",
             bottom: 0,
             backgroundColor: color,
             ...springs[id],

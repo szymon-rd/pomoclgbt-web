@@ -4,9 +4,36 @@ export interface AppState {
 }
 
 export enum HelpType {
-  NONE, EMOTIONS, LAW
+  NONE = 'none', EMOTIONS = 'emotions', LAW = 'law'
 }
 
-export type Location = String | null
+export type Location = City | null
 
-export const Cities = ["Kraków, Małopolskie", "Gdańsk, Pomorskie", "Poznań, Wielkopolskie", "Warszawa, Mazowieckie", "Lublin, Lubelskie"]
+export interface City {
+  id: number,
+  name: string,
+}
+
+export const Cities: Location[] = [
+  {
+    id: 0,
+    name: "Kraków"
+  },
+  {
+    id: 1,
+    name: "Gdańsk"
+  },
+  {
+    id: 2,
+    name: "Poznań"
+  },
+  {
+    id: 3,
+    name: "Lublin"
+  }
+]
+
+export interface Action {
+  type: String,
+  payload: any
+}
