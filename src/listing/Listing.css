@@ -1,6 +1,5 @@
 .bcTile {
   z-index: -1;
-  background-image: url("texture.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -8,19 +7,11 @@
   background-position: bottom;
 }
 
-.labelView {
-  color: white;
-  font-size: 50px;
-  font-family: 'Roboto';
-  position: absolute;
-  bottom: 40%;
-  left: 5%;
-}
-
 .listingView {
   position: absolute;
   top: 0%;
-  bottom: 0%;
+  display: flex;
+  justify-content: center;
   left: 0%;
   right: 0%;
 }
@@ -29,9 +20,33 @@
   cursor: default;
 }
 
-@media only screen and (max-width: 600px) {
+.hamburger {
+  background-color: white;
+  z-index: 3;
+  position: fixed;
+  height: 64px;
+  width: 64px;
+  top: 20%;
+  left: 7%;
+  border-radius: 50%;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  background-color: grey;
+}
+@media only screen and (max-width: 728px) {
   .listingView {
     font-size: 40px;
     bottom: 20%;
+  }
+  .hamburger {
+    top: 5%;
   }
 }

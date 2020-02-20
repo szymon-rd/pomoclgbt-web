@@ -12,22 +12,31 @@ import {
 import { Welcome } from './welcome/Welcome';
 import { Listing } from './listing/Listing';
 import { Location } from './model/types'
+import { createStore } from 'redux';
+import { appStore } from './model/state';
+import { Menu } from './menu/Menu';
 
+const store = createStore(appStore)
 
 function App() {
   return (
     <div className="Page">
       <div className="App">
+      <Provider store={store}>
         <Router>
-        <Switch>
+          <Switch>
             <Route path="/list">
               <Listing></Listing>
             </Route>
-            <Route path="/">
+            <Route path="/help">
               <Welcome></Welcome>
+            </Route>
+            <Route path ="/">
+              <Menu></Menu>
             </Route>
           </Switch>
         </Router>
+        </Provider>
       </div>
       <Footer></Footer>
     </div>

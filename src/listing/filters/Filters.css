@@ -1,28 +1,22 @@
-.list {
-  margin-top: 10%;
-  margin-bottom: 10%;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.filters {
+  z-index: 4;
+  position: fixed;
+  height: 100%;
+  left: 0%;
   background-color: white;
-  border-radius: 15px;
-  z-index: 1;
   -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  width: 0%;
+  transition: width 0.5s;
 }
 
-.tile {
-  margin: 0px;
-  width: 70%;
-  height: 200px;
-  z-index: 1;
+.filters.shown {
+  width: 350px;
 }
 
 @media only screen and (max-width: 728px) {
-  .list {
-    margin-top: 30%;
-    width: 90%;
+  .filters.shown {
+    width: 100%;
   }
 }

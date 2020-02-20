@@ -5,29 +5,27 @@ import {useSpring, animated} from 'react-spring'
 import { Location } from '../model/types'
 import {useParams} from "react-router-dom";
 import { List } from "./list/List"
+import { Hamburger } from "./Hamburger"
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { appStore } from "../model/state"
+import { Filters } from './filters/Filters'
 
 export interface ListingProps {
   city: Location
 }
 
 export const Listing = () => {
+  const [listVisible, setListVisible] = React.useState(false)
 
-  const [labelVisible, setLabelVisible] = React.useState(false)
-  const [listVisible, setListVisible] = React.useState(true)
-
-  const labelFadeIn = useSpring({
-     opacity: labelVisible ? 0 : 0
-  })
 
   const listFadeIn = useSpring({
-     opacity: listVisible ? 1 : 1
+     opacity: listVisible ? 1 : 0
   })
 
   React.useEffect(() => {
     const timers = [
-      setTimeout(() => setLabelVisible(true), 1000),
-      setTimeout(() => setLabelVisible(false), 3000),
-      setTimeout(() => setListVisible(true), 3500),
+      setTimeout(() => setListVisible(true), 1000),
     ]
     return () => {
       timers.forEach(
@@ -36,15 +34,13 @@ export const Listing = () => {
     }
   }, [])
 
-
   return (
     <div>
       <Background></Background>
-      <animated.div style={labelFadeIn} className="labelView">
-        <div className="helpLabel">Pomoc i organizacje w Krakowie</div>
-      </animated.div>
       <animated.div style={listFadeIn} className="listingView">
         {listVisible && (<List></List>)}
+        <Hamburger></Hamburger>
+        <Filters></Filters>
       </animated.div>
     </div>
   )

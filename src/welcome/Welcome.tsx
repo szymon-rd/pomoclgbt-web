@@ -10,7 +10,10 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import {
   Link
 } from "react-router-dom";
-import {HelpType, Cities} from "../model/types"
+import {HelpType, Cities, HelpSubTypes, AllSubTypes} from "../model/types"
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -18,12 +21,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const subTypesQuery = (type: HelpType, subtypes: boolean[]): string => {
+ return HelpSubTypes[type].filter(
+    type => subtypes[type.id]
+  ).map(
+    type => `${type.label}=true`
+  ).join('&')
+}
 
 export const Welcome = () => {
   const classes = useStyles();
 
   const [type, setType] = useState(HelpType.NONE);
   const [city, setCity] = useState(null as any)
+  const [subtypes, setSubtypes] = useState(AllSubTypes.map(a => true))
 
   const cityStyle = useSpring({opacity: type == HelpType.NONE ? 0 : 1})
   const lawStyle = useSpring({opacity: type != HelpType.EMOTIONS ? 1 : 0.3})
@@ -56,9 +67,24 @@ export const Welcome = () => {
       {(type != HelpType.NONE) ? (
        <animated.div className="cityStage" style={cityStyle}>
          <div>
-          {type == HelpType.EMOTIONS ?
-            ("Terapeuci, psychologowie, organizacje pomocy, psychiatrzy, ...")
-            : ("Prawnicy, kancelarie, organizacje pomocy, ...")}
+          {HelpSubTypes[type].map(subType =>  (
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={subtypes[subType.id]}
+                  onChange={() => {
+                    var arr = subtypes.slice()
+                    arr[subType.id] = !arr[subType.id]
+                    console.log(arr)
+                    setSubtypes(arr)
+                  }}
+                  value="checkedB"
+                  color="primary"
+                />
+              }
+              label={subType.name}
+            />
+          ))}
          </div>
           <Autocomplete
             id="combo-box-demo"
@@ -75,7 +101,7 @@ export const Welcome = () => {
       ) : <Fragment></Fragment>}
       <div className="continue">
         {(city != null) ? (
-        <Link to={`/list?city=${city.id}&type=${type}`}>
+        <Link to={`/list?city=${city.id}&type=${type}&${subTypesQuery(type, subtypes)}`}>
           <AnimatedButton style={continueStyle} size="large" variant="contained" color="primary" className={classes.margin}>
               Dalej
           </AnimatedButton>
