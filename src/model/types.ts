@@ -1,17 +1,14 @@
 
 
+export interface FlagFiltersState {
+  [flagName: string]: boolean
+}
+
 export interface FiltersState {
   filtersShown: boolean,
   city: Location,
   helpType: HelpType,
-  flags: {
-    psychiatrist: boolean,
-    therapist: boolean,
-    instantHelp: boolean,
-    organization: boolean,
-    lawHelp: boolean,
-    lawyer: boolean
-  }
+  flags: FlagFiltersState
 }
 
 export interface AppState {
@@ -29,78 +26,16 @@ export interface City {
   name: string,
 }
 
-export interface HelpSubType {
+export interface HelpFilter {
+  helpTypes: HelpType[],
   id: number,
   name: string,
-  label: string
+  label: string,
+  stateVar: string
 }
 
-export const HelpSubTypes: Record<HelpType, HelpSubType[]> = {
-  'emotions': [
-    {
-      id: 0,
-      name: 'Natychmiastowa pomoc',
-      label: 'ins'
-    },
-    {
-      id: 1,
-      name: 'Psycholog',
-      label: 'th'
-    },
-    {
-      id: 2,
-      name: 'Psychiatra',
-      label: 'psy'
-    },
-    {
-      id: 3,
-      name: 'Organizacja',
-      label: 'org'
-    }
-  ],
-  'law': [
-    {
-      id: 4,
-      name: 'Porada prawna',
-      label: 'ask'
-    },
-    {
-      id: 5,
-      name: 'Prawnik',
-      label: 'law'
-    },
-    {
-      id: 6,
-      name: 'Organizacja',
-      label: 'org'
-    },
-  ],
-  'none': [
-
-  ]
-}
-
-export const AllSubTypes = HelpSubTypes.emotions.concat(HelpSubTypes.law)
-
-export const Cities: Location[] = [
-  {
-    id: 0,
-    name: "Kraków"
-  },
-  {
-    id: 1,
-    name: "Gdańsk"
-  },
-  {
-    id: 2,
-    name: "Poznań"
-  },
-  {
-    id: 3,
-    name: "Lublin"
-  }
-]
-
-export const idToCity = (id: number) => {
-  return Cities.find(c => c?.id == id)
+export interface Institution {
+  id: string,
+  name: string,
+  description: string
 }

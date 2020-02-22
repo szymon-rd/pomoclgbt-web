@@ -10,10 +10,14 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import {
   Link
 } from "react-router-dom";
-import {HelpType, Cities, HelpSubTypes, AllSubTypes} from "../model/types"
+import {HelpType} from "../model/types"
+import {Cities, HelpFilters, HelpFiltersForType, helpFiltersArrayToState} from "../model/constants"
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import { connect } from 'react-redux';
+import { Action, setLocation, setType as setHelpType, setFilterFlags } from '../model/actions';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -21,20 +25,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const subTypesQuery = (type: HelpType, subtypes: boolean[]): string => {
- return HelpSubTypes[type].filter(
-    type => subtypes[type.id]
+const filtersQuery = (type: HelpType, filters: boolean[]): string => {
+ return HelpFiltersForType[type].filter(
+    filter => filters[filter.id]
   ).map(
-    type => `${type.label}=true`
+    filter => `${filter.label}=true`
   ).join('&')
 }
 
-export const Welcome = () => {
+interface ComponentProps {
+  dispatch: (action: Action) => void
+}
+
+const Component = ({dispatch}: ComponentProps) => {
   const classes = useStyles();
 
   const [type, setType] = useState(HelpType.NONE);
   const [city, setCity] = useState(null as any)
-  const [subtypes, setSubtypes] = useState(AllSubTypes.map(a => true))
+  const [filters, setFilters] = useState(HelpFilters.map(a => true))
 
   const cityStyle = useSpring({opacity: type == HelpType.NONE ? 0 : 1})
   const lawStyle = useSpring({opacity: type != HelpType.EMOTIONS ? 1 : 0.3})
@@ -45,8 +53,13 @@ export const Welcome = () => {
     setCity(values)
   }
 
+  const updateState = () => {
+    dispatch(setLocation(city))
+    dispatch(setHelpType(type))
+    dispatch(setFilterFlags(helpFiltersArrayToState(filters)))
+  }
+
   const AnimatedButton = animated(Button);
-  console.log(city?.values)
   return (
     <div className="welcome">
       <div className="header">
@@ -67,22 +80,21 @@ export const Welcome = () => {
       {(type != HelpType.NONE) ? (
        <animated.div className="cityStage" style={cityStyle}>
          <div>
-          {HelpSubTypes[type].map(subType =>  (
+          {HelpFiltersForType[type].map(filter =>  (
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={subtypes[subType.id]}
+                  checked={filters[filter.id]}
                   onChange={() => {
-                    var arr = subtypes.slice()
-                    arr[subType.id] = !arr[subType.id]
-                    console.log(arr)
-                    setSubtypes(arr)
+                    var arr = filters.slice()
+                    arr[filter.id] = !arr[filter.id]
+                    setFilters(arr)
                   }}
                   value="checkedB"
                   color="primary"
                 />
               }
-              label={subType.name}
+              label={filter.name}
             />
           ))}
          </div>
@@ -101,7 +113,7 @@ export const Welcome = () => {
       ) : <Fragment></Fragment>}
       <div className="continue">
         {(city != null) ? (
-        <Link to={`/list?city=${city.id}&type=${type}&${subTypesQuery(type, subtypes)}`}>
+        <Link onClick={() => {updateState()}} to={`/list?city=${city.id}&type=${type}&${filtersQuery(type, filters)}`}>
           <AnimatedButton style={continueStyle} size="large" variant="contained" color="primary" className={classes.margin}>
               Dalej
           </AnimatedButton>
@@ -111,3 +123,8 @@ export const Welcome = () => {
     </div>
   )
 }
+
+export const Welcome = connect(
+  () => ({}),
+  (dispatch) => ({dispatch})
+)(Component)

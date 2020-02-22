@@ -9,6 +9,77 @@
   box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   width: 0%;
   transition: width 0.5s;
+  overflow: scroll;
+}
+
+.filtersGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin: 10%;
+  justify-content: space-between;
+
+}
+
+.search {
+  margin: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+.inputSearch {
+  width: 70%;
+}
+
+.button {
+  margin: 5%;
+}
+
+.helpType {
+  margin: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+
+.helpTypeButtons {
+  margin: 5% !important;
+}
+
+.options {
+  margin: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+.city {
+  margin: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+.selectCity {
+  width: 70%;
 }
 
 .filters.shown {

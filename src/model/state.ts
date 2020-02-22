@@ -1,24 +1,31 @@
 import { createStore, combineReducers } from 'redux'
-import { AppState, HelpType, FiltersState, idToCity } from './types'
+import { AppState, HelpType, FiltersState } from './types'
+import { idToCity } from './constants'
 import { Action } from './actions'
 import { getValueFromUrl } from './urlparams'
+
+const validateHelpType = (helpType: string) => {
+  if(Object.values(HelpType).includes(helpType as HelpType)) return helpType;
+  else return HelpType.NONE
+}
+
+const stringToBool = (s: string) => s === 'true'
 
 const filtersState: FiltersState = {
   filtersShown: false,
   city: getValueFromUrl('city', null, idToCity),
-  helpType: getValueFromUrl('type', null),
+  helpType: getValueFromUrl('type', HelpType.NONE, validateHelpType),
   flags: {
-    psychiatrist: getValueFromUrl('psy', false, Boolean),
-    therapist: getValueFromUrl('th', false, Boolean),
-    instantHelp: getValueFromUrl('ins', false, Boolean),
-    organization: getValueFromUrl('org', false, Boolean),
-    lawHelp: getValueFromUrl('help', false, Boolean),
-    lawyer: getValueFromUrl('law', false, Boolean)
+    psychiatrist: getValueFromUrl('psy', false, stringToBool),
+    therapist: getValueFromUrl('th', false, stringToBool),
+    instantHelp: getValueFromUrl('ins', false, stringToBool),
+    organization: getValueFromUrl('org', false, stringToBool),
+    lawHelp: getValueFromUrl('help', false, stringToBool),
+    lawyer: getValueFromUrl('law', false, stringToBool)
   }
 }
 
 const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
-  console.log('abc')
   switch(action.type) {
     case "SET_LOCATION":
       return Object.assign({}, state, {
@@ -31,6 +38,10 @@ const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
     case "SET_FILTERS_SHOWN":
         return Object.assign({}, state, {
           filtersShown: action.payload
+        })
+    case "SET_FILTER_FLAGS":
+        return Object.assign({}, state, {
+          flags: action.payload
         })
     default:
       return state;
