@@ -1,4 +1,4 @@
-import { HelpType, HelpFilter, Location, FlagFiltersState } from './types'
+import { HelpType, HelpFilter, Location, FlagFiltersState, Institution } from './types'
 
 export const HelpFilters: HelpFilter[] = [
   {
@@ -82,3 +82,64 @@ export const helpFiltersArrayToState = (array: boolean[]): FlagFiltersState => {
   }
   return obj
 }
+
+
+export const SampleInstitutions: Institution[] = [
+  {
+    id: 'lam',
+    name: 'Lambda Warszawa - Telefon Zaufania',
+    label: 'Organizacja',
+    description: "Jeśli potrzebujesz wsparcia; jeśli chciałabyś lub chciałbyś porozmawiać o trudnej sytuacji Twojej lub bliskiej osoby; jeśli czujesz, że rozmowa może okazać się potrzebna – skontaktuj się z nami.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:226285222',
+        displayAddress: '22 628 52 22'
+      },
+      {
+        label: 'website',
+        address: 'http://lambdawarszawa.org/lambdawarszawa/aktualnosci/telefon-zaufania/',
+        displayAddress: 'lambdawarszawa.org'
+      }
+    ]
+  },
+  {
+    id: 'tec',
+    name: 'Stowarzyszenie Tęczówka',
+    label: 'Organizacja',
+    description: "Działamy na rzecz osób LGBT+. Wspieramy lesbijki, gejów, osoby biseksualne, transpłciowe oraz wszystkie osoby nieheteronormatywne poprzez prowadzenie wsparcia psychologicznego i prawnego. Organizujemy grupy spotkaniowe oraz inne wydarzenia integrujące.",
+    contact: [
+      {
+        label: 'website',
+        address: 'https://teczowka.org.pl/pl/pomoc-psychologiczna',
+        displayAddress: 'teczowka.org.pl'
+      }
+    ]
+  },
+  {
+    id: 'kph',
+    name: "Kampania przeciw homofobii",
+    label: 'Organizacja',
+    description: "Jeżeli doświadczasz dyskryminacji na tle orientacji seksualnej lub tożsamości/ekspresji płciowej, udzielimy Ci bezpłatnej pomocy prawnej i psychologicznej.",
+    contact: [
+      {
+        label: 'website',
+        address: 'https://kph.org.pl/pomoc/pomoc-psychologiczna/',
+        displayAddress: 'kph.org.pl'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  }
+]

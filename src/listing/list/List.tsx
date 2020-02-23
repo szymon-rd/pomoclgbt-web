@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './List.css'
 import {useSpring, animated} from 'react-spring'
 import { Location, AppState, FlagFiltersState, HelpType } from '../../model/types'
 import { Tile } from './Tile'
 import { connect } from 'react-redux';
+import { SampleInstitutions } from '../../model/constants';
 
 interface ComponentProps {
   helpType: HelpType,
@@ -13,9 +14,12 @@ interface ComponentProps {
 }
 
 const Component = ({helpType, filters, search, location}: ComponentProps) => {
+  const institutions = SampleInstitutions;
   return (
     <div className="list">
-      {helpType + " " + JSON.stringify(filters) + " " + search + " " + JSON.stringify(location)}
+      {institutions.map(ins => (
+        <Tile institution={ins}></Tile>
+      ))}
     </div>
   )
 }

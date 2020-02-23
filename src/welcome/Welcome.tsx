@@ -19,6 +19,13 @@ import { connect } from 'react-redux';
 import { Action, setLocation, setType as setHelpType, setFilterFlags } from '../model/actions';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 
+const unfocus = (): any => {
+  const tmp: any = document.createElement('input')
+  document.body.appendChild(tmp)
+  tmp.focus()
+  document.body.removeChild(tmp)
+}
+
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
@@ -49,8 +56,10 @@ const Component = ({dispatch}: ComponentProps) => {
   const emotionsStyle = useSpring({opacity: type != HelpType.LAW ? 1 : 0.3})
   const continueStyle = useSpring({opacity: city == null ? 0 : 1})
 
+  const textboxRef = React.useRef(null)
   const onCityChange = (event: any, values: any) => {
     setCity(values)
+    unfocus()
   }
 
   const updateState = () => {
@@ -60,6 +69,7 @@ const Component = ({dispatch}: ComponentProps) => {
   }
 
   const AnimatedButton = animated(Button);
+
   return (
     <div className="welcome">
       <div className="header">
@@ -106,7 +116,7 @@ const Component = ({dispatch}: ComponentProps) => {
             style={{ width: 300 }}
             onChange={onCityChange}
             renderInput={params => (
-              <TextField {...params} label="Skąd jesteś?" color="primary" variant="outlined" fullWidth />
+              <TextField ref={textboxRef} {...params} label="Skąd jesteś?" color="primary" variant="outlined" fullWidth />
             )}
           />
         </animated.div>

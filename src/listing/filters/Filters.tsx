@@ -102,7 +102,7 @@ const Component = ({
               onChange={(ev) => {setCurrentSearch(ev.target.value)}}
               className="inputSearch"
               id="standard-basic"
-              label="Standard"
+              label=""
               value={currentSearch}
             />
           </div>

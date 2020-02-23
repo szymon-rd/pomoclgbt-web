@@ -34,8 +34,16 @@ export interface HelpFilter {
   stateVar: string
 }
 
+export interface InstitutionContact {
+  label: string,
+  address: string,
+  displayAddress: string
+}
+
 export interface Institution {
   id: string,
   name: string,
+  label: string,
   description: string
+  contact: InstitutionContact[]
 }

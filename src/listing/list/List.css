@@ -3,6 +3,7 @@
   margin-bottom: 10%;
   width: 70%;
   display: flex;
+  height: fit-content;
   flex-direction: column;
   align-items: center;
   background-color: white;
@@ -14,15 +15,85 @@
 }
 
 .tile {
+  font-size: 16px;
   margin: 0px;
-  width: 70%;
-  height: 200px;
+  width: 90%;
   z-index: 1;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.icon > img {
+  width: 64px;
+  height: 64px;
+}
+
+.content {
+  width: 100%;
+  margin: 16px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tileTitle {
+  font-weight: bold;
+}
+
+
+.tileLabel {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #555555;
+}
+
+.midLine {
+  height: 100px;
+  margin: 1px;
+  margin-left: 16px;
+  min-height: 100%;
+  border-right: 1px solid #aaaaaa;
+}
+
+.tileDesc {
+  margin-top: 2px;
+}
+
+
+
+.contact {
+  color: #555555;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.contactOption {
+  display: flex;
+  align-items: center;
+  margin: 2px;
+}
+
+.contactOption > a {
+  margin-left: 4px;
+}
+
+.contactIcon {
+  font-size: 22px !important;
 }
 
 @media only screen and (max-width: 728px) {
   .list {
     margin-top: 30%;
     width: 90%;
+  }
+  .tile {
+    flex-direction: column;
+  }
+  .midLine {
+    height: 0px;
+    border-bottom: 1px solid #aaaaaa;
+    width: 200px;
   }
 }
