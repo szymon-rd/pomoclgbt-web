@@ -1,10 +1,14 @@
 import React from 'react';
 import './Footer.css'
 
-export const Footer = () => {
+
+interface FooterProps {
+  color: string
+}
+export const Footer = ({color}: FooterProps) => {
   return (
-    <div className="footer" >
-      © 2020 UnihogSoft
+    <div style={{color: color}} className="footer" >
+      © 2020 pomoclgbt.pl
     </div>
   )
 }

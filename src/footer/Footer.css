@@ -1,7 +1,16 @@
 .footer {
   flex-shrink: 0;
+  position: fixed;
   text-align: center;
   filter: grayscale();
-  color: white;
-  margin-bottom: 1px;
+  z-index: -1;
+  width: 100%;
+  bottom: 4px;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 728px) {
+  .footer {
+  font-size: 12px;
+  }
 }

@@ -59,9 +59,8 @@
 
 .tileDesc {
   margin-top: 2px;
+  text-align: justify;
 }
-
-
 
 .contact {
   color: #555555;
@@ -83,17 +82,57 @@
   font-size: 22px !important;
 }
 
+
 @media only screen and (max-width: 728px) {
+
+  .tileHeading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .icon > img {
+    height: 32px;
+    width: 32px;
+  }
+
+  .tileTitleAndLabel {
+    margin-left: 8px;
+  }
+
   .list {
     margin-top: 30%;
     width: 90%;
   }
   .tile {
+    margin: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     flex-direction: column;
   }
+
+  .tileDesc {
+    margin-top: 4px;
+    font-size: 13px;
+  }
   .midLine {
-    height: 0px;
-    border-bottom: 1px solid #aaaaaa;
-    width: 200px;
+    height: 32px;
+    margin-left: 8px
+  }
+
+  .tile {
+    font-size: 13px;
+  }
+
+  .tileLabel {
+    font-size: 12px;
+  }
+
+  .contact {
+    font-size: 13px;
+  }
+
+  .contactIcon {
+    font-size: 16px !important;
   }
 }

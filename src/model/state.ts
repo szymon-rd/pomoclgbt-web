@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux'
-import { AppState, HelpType, FiltersState } from './types'
+import { AppState, HelpType, FiltersState, LayoutState } from './types'
 import { idToCity } from './constants'
 import { Action } from './actions'
 import { getValueFromUrl } from './urlparams'
@@ -22,7 +22,11 @@ const filtersState: FiltersState = {
     organization: getValueFromUrl('org', false, stringToBool),
     lawHelp: getValueFromUrl('help', false, stringToBool),
     lawyer: getValueFromUrl('law', false, stringToBool)
-  }
+  },
+}
+
+const layoutState: LayoutState = {
+  mobile: false
 }
 
 const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
@@ -36,13 +40,25 @@ const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
         helpType: action.payload
       })
     case "SET_FILTERS_SHOWN":
-        return Object.assign({}, state, {
-          filtersShown: action.payload
-        })
+      return Object.assign({}, state, {
+        filtersShown: action.payload
+      })
     case "SET_FILTER_FLAGS":
-        return Object.assign({}, state, {
-          flags: action.payload
-        })
+      return Object.assign({}, state, {
+        flags: action.payload
+      })
+    default:
+      return state;
+  }
+}
+
+const layoutReducer = (state: FiltersState = filtersState, action: Action) => {
+  switch(action.type) {
+    case "SET_MOBILE":
+      console.log(JSON.stringify(action))
+      return Object.assign({}, state, {
+        mobile: action.payload
+      })
     default:
       return state;
   }
@@ -50,6 +66,7 @@ const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
 
 export const appStore = combineReducers({
   filters: filtersReducer,
+  layout: layoutReducer
 })
 
 export const store = createStore(

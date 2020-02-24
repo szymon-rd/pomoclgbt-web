@@ -11,8 +11,13 @@ export interface FiltersState {
   flags: FlagFiltersState
 }
 
+export interface LayoutState {
+  mobile: boolean
+}
+
 export interface AppState {
   filters: FiltersState
+  layout: LayoutState,
 }
 
 export enum HelpType {

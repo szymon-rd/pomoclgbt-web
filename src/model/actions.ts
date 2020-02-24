@@ -1,6 +1,6 @@
 import { Location, HelpType, FlagFiltersState } from './types'
 
-export type ActionType = "SET_LOCATION" | "SET_HELP_TYPE" | "SET_FILTERS_SHOWN" | "SET_FILTER_FLAGS"
+export type ActionType = "SET_LOCATION" | "SET_HELP_TYPE" | "SET_FILTERS_SHOWN" | "SET_FILTER_FLAGS" | "SET_MOBILE"
 
 export interface Action {
   type: ActionType,
@@ -25,4 +25,9 @@ export const setFiltersShown = (shown: Boolean): Action => ({
 export const setFilterFlags = (flags: FlagFiltersState): Action => ({
   type: "SET_FILTER_FLAGS",
   payload: flags
+})
+
+export const setMobile = (mobile: boolean): Action => ({
+  type: 'SET_MOBILE',
+  payload: mobile
 })
