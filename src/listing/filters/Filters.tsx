@@ -1,6 +1,5 @@
 import React from 'react';
 import './Filters.css'
-import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Dispatch } from 'redux';
@@ -8,15 +7,11 @@ import { setFiltersShown, setFilterFlags, setLocation, setType } from '../../mod
 import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import {
-  Link
-} from "react-router-dom";
-import {AppState, FlagFiltersState, HelpType, HelpFilter} from "../../model/types"
-import {HelpFiltersForType, Cities, HelpFilters} from "../../model/constants"
-import {getHelpFilters} from "../../model/selectors"
+import {AppState, FlagFiltersState, HelpType} from "../../model/types"
+import {HelpFiltersForType, Cities} from "../../model/constants"
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import { Location } from '../../model/types'
 
 const FadeInDuration = 600

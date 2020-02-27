@@ -1,5 +1,7 @@
 import { HelpType, HelpFilter, Location, FlagFiltersState, Institution } from './types'
 
+export const InstitutionsPerPage = 10
+
 export const HelpFilters: HelpFilter[] = [
   {
     helpTypes: [HelpType.EMOTIONS],
@@ -54,10 +56,6 @@ export const HelpFiltersForType: Record<HelpType, HelpFilter[]> = {
 
 export const Cities: Location[] = [
   {
-    id: 0,
-    name: "Kraków"
-  },
-  {
     id: 1,
     name: "Gdańsk"
   },
@@ -68,6 +66,10 @@ export const Cities: Location[] = [
   {
     id: 3,
     name: "Lublin"
+  },
+  {
+    id: 4,
+    name: "Kraków"
   }
 ]
 

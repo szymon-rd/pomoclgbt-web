@@ -10,6 +10,7 @@ export interface FiltersState {
   helpType: HelpType,
   flags: FlagFiltersState,
   search: string
+  page: number
 }
 
 export interface LayoutState {

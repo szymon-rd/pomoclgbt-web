@@ -2,7 +2,8 @@ import { createStore, combineReducers, Middleware, MiddlewareAPI, Dispatch, appl
 import { AppState, HelpType, FiltersState, LayoutState } from './types'
 import { idToCity } from './constants'
 import { Action } from './actions'
-import { getValueFromUrl } from './urlUpdater'
+import { Action as ReduxAction } from 'redux'
+import { getValueFromUrl, updateUrl } from './urlUpdater'
 
 const validateHelpType = (helpType: string) => {
   if(Object.values(HelpType).includes(helpType as HelpType)) return helpType;
@@ -23,42 +24,21 @@ const filtersState: FiltersState = {
     lawHelp: getValueFromUrl('help', false, stringToBool),
     lawyer: getValueFromUrl('law', false, stringToBool)
   },
-  search: getValueFromUrl('search', '')
+  search: getValueFromUrl('search', ''),
+  page: getValueFromUrl('page', 0)
 }
 
 const layoutState: LayoutState = {
   mobile: false
 }
 
-const appendToUrl = (url: string, key: string, value: string): string => {
-  return url + `${url.length > 0 ? '&' : ''}${key}=${value}`
-}
-
-const updateUrl = (state: FiltersState) => { //consider making more general way
-  // var url = ""
-  // if(state.city) url = appendToUrl(url, 'city', state.city.id.toString())
-  // if(state.helpType) url = appendToUrl(url, 'type', state.helpType)
-  // if(state.search) url = appendToUrl(url, 'search', state.search)
-  // if(state.flags.psychiatrist) url = appendToUrl(url, 'psy', '' + state.flags.psychiatrist)
-  // if(state.flags.therapist) url = appendToUrl(url, 'th', '' + state.flags.psychiatrist)
-  // if(state.flags.instantHelp) url = appendToUrl(url, 'ins', '' + state.flags.psychiatrist)
-  // if(state.flags.organization) url = appendToUrl(url, 'org', '' + state.flags.psychiatrist)
-  // if(state.flags.lawHelp) url = appendToUrl(url, 'help', '' + state.flags.psychiatrist)
-  // if(state.flags.lawyer) url = appendToUrl(url, 'law', '' + state.flags.psychiatrist)
-  // console.log(url)
-  // document.location.assign(url);
-}
-
 
 export const urlMiddleware: Middleware =
   (api: MiddlewareAPI) =>
-  (next: Dispatch<Action>) =>
-  (action: Action): Action => {
-    console.log(api.getState())
-  console.log('axbc')
+  (next: Dispatch<ReduxAction>) =>
+  (action: ReduxAction & {action: Action}): ReduxAction => {
   const result = next(action);
-  const state = api.getState() as AppState;
-  updateUrl(state.filters)
+  updateUrl(action.action)
   return result;
 };
 
@@ -80,6 +60,10 @@ const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
       return Object.assign({}, state, {
         flags: action.payload
       })
+    case "SET_PAGE":
+      return Object.assign({}, state, {
+        page: action.payload
+      })
     default:
       return state;
   }
@@ -88,7 +72,6 @@ const filtersReducer = (state: FiltersState = filtersState, action: Action) => {
 const layoutReducer = (state: LayoutState = layoutState, action: Action) => {
   switch(action.type) {
     case "SET_MOBILE":
-      console.log(JSON.stringify(action))
       return Object.assign({}, state, {
         mobile: action.payload
       })

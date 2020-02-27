@@ -4,7 +4,7 @@ import {useSpring, animated} from 'react-spring'
 import { Location, AppState, FlagFiltersState, HelpType } from '../../model/types'
 import { Tile } from './Tile'
 import { connect } from 'react-redux';
-import { SampleInstitutions } from '../../model/constants';
+import { SampleInstitutions, InstitutionsPerPage } from '../../model/constants';
 import { TileMobile } from './TileMobile';
 import { InstitutionService } from '../../service/institutionService';
 
@@ -13,13 +13,16 @@ interface ComponentProps {
   filters: FlagFiltersState,
   search: string,
   location: Location,
-  mobile: boolean
+  mobile: boolean,
+  page: number
 }
 
 const institutionService = new InstitutionService()
 
-const Component = ({helpType, filters, search, location, mobile}: ComponentProps) => {
+const Component = ({helpType, filters, search, location, mobile, page}: ComponentProps) => {
   const institutions = SampleInstitutions;
+  const start = page * InstitutionsPerPage;
+  const end = start + InstitutionsPerPage - 1;
   return (
     <div className="list"> {
       institutionService.fetchInstitutions(
@@ -27,10 +30,11 @@ const Component = ({helpType, filters, search, location, mobile}: ComponentProps
         filters,
         location,
         search,
-        0,
-        10
+        start,
+        end
       ).map(ins =>
-      mobile ? (<TileMobile institution={ins}></TileMobile>) : (<Tile institution={ins}></Tile>))
+        mobile ? (<TileMobile institution={ins}></TileMobile>) : (<Tile institution={ins}></Tile>)
+      )
     } </div>
   )
 }
@@ -40,7 +44,8 @@ const mapStateToProps = (state: AppState) => ({
   filters: state.filters.flags,
   search: "",
   location: state.filters.city,
-  mobile: state.layout.mobile
+  mobile: state.layout.mobile,
+  page: state.filters.page
 })
 
 export const List = connect(
