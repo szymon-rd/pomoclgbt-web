@@ -77,7 +77,7 @@ export const Background = () => {
   return (
     <div className="background">
       {rainbow.map(({id, color}) => (
-          <animated.div className="bcTile" style={{
+          <animated.div className="bcTile" key={id} style={{
             left: dimensions.width * positions[id] - dimensions.height,
             width: dimensions.width * stripWidth,
             top: -dimensions.height,
@@ -88,7 +88,7 @@ export const Background = () => {
           }}></animated.div>
         )
       ).concat(
-        <animated.div className="bcTile" style={{
+        <animated.div className="bcTile" key={rainbow.length } style={{
             left: dimensions.width * (stripWidth * rainbow.length) - dimensions.height,
             right: dimensions.width * (stripWidth * rainbow.length),
             top: -dimensions.height,
@@ -99,7 +99,7 @@ export const Background = () => {
           }}></animated.div>
       ).concat(
         rainbow.map(({id, color}) => (
-          <animated.div className="bcTile" style={{
+          <animated.div className="bcTile" key={rainbow.length + 1 + id} style={{
             right: dimensions.width * positions[id],
             width: dimensions.width * stripWidth,
             top: -dimensions.height,

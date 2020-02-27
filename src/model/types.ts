@@ -8,7 +8,8 @@ export interface FiltersState {
   filtersShown: boolean,
   city: Location,
   helpType: HelpType,
-  flags: FlagFiltersState
+  flags: FlagFiltersState,
+  search: string
 }
 
 export interface LayoutState {

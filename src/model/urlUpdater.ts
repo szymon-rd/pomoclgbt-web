@@ -1,21 +1,4 @@
-import {replace} from 'react-router-redux';
-import { Store, Action } from 'redux';
-
-export default (store: any) => (next: any) => (action: any) => {
-  if (action.pushToUrl) {
-    const state = store.getState();
-    const typelessReplace = replace as any
-    store.dispatch(typelessReplace({
-      pathname: state.routing.locationBeforeTransitions.pathname,
-      query: {
-        ...state.routing.locationBeforeTransitions.query,
-        ...action.pushToUrl
-      }
-    }));
-  }
-
-  return next(action);
-}
+import { UrlUpdater, Action } from './actions'
 
 const getProps = (url: string): Record<string, any> => {
   var result = {}
@@ -35,4 +18,13 @@ export const getValueFromUrl = (prop: string, def: any, mapper?: (value: any) =>
   if(value === undefined) return def;
   else if(mapper === undefined) return value;
   else return mapper(value)
+}
+
+export const updateUrl = (action: Action) => {
+  const url: URL = new URL(document.location.href)
+  if(action.urlUpdaters == undefined || action.urlUpdaters == null) return;
+  const payload = action.payload;
+  action.urlUpdaters.forEach(updater => {
+    
+  })
 }

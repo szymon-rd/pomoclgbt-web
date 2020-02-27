@@ -6,6 +6,7 @@ import { Tile } from './Tile'
 import { connect } from 'react-redux';
 import { SampleInstitutions } from '../../model/constants';
 import { TileMobile } from './TileMobile';
+import { InstitutionService } from '../../service/institutionService';
 
 interface ComponentProps {
   helpType: HelpType,
@@ -15,13 +16,22 @@ interface ComponentProps {
   mobile: boolean
 }
 
+const institutionService = new InstitutionService()
+
 const Component = ({helpType, filters, search, location, mobile}: ComponentProps) => {
   const institutions = SampleInstitutions;
   return (
-    <div className="list">
-      { institutions.map(ins =>
-      mobile ? (<TileMobile institution={ins}></TileMobile>) : (<Tile institution={ins}></Tile>))}
-    </div>
+    <div className="list"> {
+      institutionService.fetchInstitutions(
+        helpType,
+        filters,
+        location,
+        search,
+        0,
+        10
+      ).map(ins =>
+      mobile ? (<TileMobile institution={ins}></TileMobile>) : (<Tile institution={ins}></Tile>))
+    } </div>
   )
 }
 

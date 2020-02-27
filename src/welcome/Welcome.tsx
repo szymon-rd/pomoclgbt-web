@@ -78,7 +78,7 @@ const Component = ({dispatch}: ComponentProps) => {
       <div className="selectType">
         <div className="emotionsBtn">
           <AnimatedButton style={emotionsStyle} onClick={() => setType(HelpType.EMOTIONS)} size="large" variant="contained" color="primary" className={classes.margin}>
-            <FavoriteIcon /> &nbsp;&nbsp; Emocje
+            <FavoriteIcon /> &nbsp;&nbsp; Rozmowa
           </AnimatedButton>
         </div>
         <div className="lawBtn">
@@ -135,6 +135,6 @@ const Component = ({dispatch}: ComponentProps) => {
 }
 
 export const Welcome = connect(
-  () => ({}),
+  (state) => ({}),
   (dispatch) => ({dispatch})
 )(Component)

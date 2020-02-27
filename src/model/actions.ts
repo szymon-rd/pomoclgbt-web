@@ -2,9 +2,17 @@ import { Location, HelpType, FlagFiltersState } from './types'
 
 export type ActionType = "SET_LOCATION" | "SET_HELP_TYPE" | "SET_FILTERS_SHOWN" | "SET_FILTER_FLAGS" | "SET_MOBILE"
 
+export type UrlKey = string
+
+export interface UrlUpdater {
+  param: string,
+  payloadMapper: (payload: any) => any
+}
+
 export interface Action {
   type: ActionType,
-  payload: any
+  payload: any,
+  urlUpdaters?: UrlUpdater[]
 }
 
 export const setLocation = (location: Location): Action => ({

@@ -113,7 +113,7 @@ const Component = ({
                 onClick={() => {setCurrentHelpType(HelpType.EMOTIONS)}}
                 variant={currentHelpType == HelpType.EMOTIONS ? "contained" : "outlined"}
               >
-                Emocje
+                Rozmowa
               </Button>
               <Button
                 onClick={() => {setCurrentHelpType(HelpType.LAW)}}

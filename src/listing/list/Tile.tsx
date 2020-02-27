@@ -36,7 +36,7 @@ export const Tile = ({institution}: TileProps) => {
         <div className="contact">
           Kontakt:
           {institution.contact.map(contact => (
-            <div className="contactOption">
+            <div className="contactOption" key={contact.label}>
               {contactIcon[contact.label]}
               <a href={contact.address}>{contact.displayAddress}</a>
             </div>

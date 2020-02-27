@@ -141,5 +141,121 @@ export const SampleInstitutions: Institution[] = [
         displayAddress: '123 456 789'
       }
     ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },{
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Małgorzata Nowak',
+    label: 'Psychoterapeutka',
+    description: "Psychoterapeutka doświadczona w pracy z osobami transpłciowymi.",
+    contact: [
+      {
+        label: 'phone',
+        address: 'tel:123456789',
+        displayAddress: '123 456 789'
+      }
+    ]
   }
 ]

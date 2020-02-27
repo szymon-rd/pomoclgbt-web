@@ -13,11 +13,9 @@ import { Welcome } from './welcome/Welcome';
 import { Listing } from './listing/Listing';
 import { Location } from './model/types'
 import { createStore } from 'redux';
-import { appStore } from './model/state';
+import { appStore, store } from './model/state';
 import { Menu } from './menu/Menu';
 import { MobileSiteIndicator } from './MobileSiteIndicator';
-
-const store = createStore(appStore)
 
 function App() {
   return (
